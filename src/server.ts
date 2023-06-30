@@ -1,4 +1,6 @@
 import { serverHttp } from './configs'
 import './websockets/layers'
 
-serverHttp.listen(8080, () => console.log('server running on port 8080'))
+const port = 3000
+
+serverHttp.listen(port, () => console.log(`server running on port ${port}`))
