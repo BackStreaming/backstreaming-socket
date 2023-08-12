@@ -1,6 +1,6 @@
-import { serverHttp } from './configs'
+import { serverHttp } from './config'
 import './websockets/layers'
 
-const port = 3000
-
-serverHttp.listen(port, () => console.log(`server running on port ${port}`))
+serverHttp.listen(8080, () => {
+  console.log("Secure server is listening on port 8080");
+});

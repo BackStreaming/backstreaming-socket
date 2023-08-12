@@ -1,4 +1,4 @@
-import { io } from '../configs'
+import { io } from '../config'
 
 interface idroom {
   room: string
