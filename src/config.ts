@@ -3,6 +3,7 @@ import https from 'https'
 import fs from 'fs'
 
 import { Server } from 'socket.io'
+import path from 'path'
 
 const app = express()
 
@@ -13,13 +14,13 @@ app.get("/", (req, res, next) => {
   res.send("hello I am SSL Server !");
 });
 
-app.get('/.well-known/pki-validation/F3215C3C19A6EDAA07D8F706CCB8AB51.txt', (req, res) => {
-  res.sendFile(`C:/Users/Apollo/www/backend/backstreaming-socket/cert/F3215C3C19A6EDAA07D8F706CCB8AB51.txt`)
+app.get('/.well-known/pki-validation/38AD15B27BF6046063E982536DE98E23.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "cert", "38AD15B27BF6046063E982536DE98E23.txt"))
 })
 
 const serverHttp = https.createServer({
-  cert: fs.readFileSync('C:/Users/Apollo/www/backend/backstreaming-socket/cert/certificate.crt'),
-  key: fs.readFileSync('C:/Users/Apollo/www/backend/backstreaming-socket/cert/private.key')
+  cert: fs.readFileSync(path.join(__dirname, "..", "cert", "certificate.crt")),
+  key: fs.readFileSync(path.join(__dirname, "..", "cert", "private.key"))
 }, app);
 
 const io = new Server(serverHttp)
