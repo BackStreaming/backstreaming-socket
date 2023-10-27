@@ -1,6 +1,5 @@
 import express from 'express'
-// import https from 'https'
-import http from 'http'
+import https from 'https'
 import fs from 'fs'
 
 import { Server } from 'socket.io'
@@ -15,11 +14,14 @@ app.get("/", (req, res, next) => {
   res.send("hello I am SSL Server !");
 });
 
-app.get('/.well-known/pki-validation/C99DBD23517DF0AB8C8883143D35D322.txt', (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "cert", "C99DBD23517DF0AB8C8883143D35D322.txt"))
+app.get('/.well-known/pki-validation/38AD15B27BF6046063E982536DE98E23.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "cert", "38AD15B27BF6046063E982536DE98E23.txt"))
 })
 
-const serverHttp = http.createServer(app);
+const serverHttp = https.createServer({
+  cert: fs.readFileSync(path.join(__dirname, "..", "cert", "certificate.crt")),
+  key: fs.readFileSync(path.join(__dirname, "..", "cert", "private.key"))
+}, app);
 
 const io = new Server(serverHttp)
 
