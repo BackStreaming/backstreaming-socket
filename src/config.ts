@@ -2,6 +2,8 @@ import express from 'express'
 import https from 'https'
 import fs from 'fs'
 
+import cors from "cors"
+
 import { LayersRoute } from './routes/Layers'
 import { UserAuthRoute } from './routes/UserAuth'
 
@@ -9,6 +11,10 @@ import { Server } from 'socket.io'
 import path from 'path'
 
 const app = express()
+
+app.use(cors({
+  origin: "*"
+}))
 
 // Plugins:
 app.use(express.json());
