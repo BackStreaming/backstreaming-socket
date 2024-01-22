@@ -4,6 +4,7 @@ import fs from 'fs'
 
 import { LayersRoute } from './routes/Layers'
 import { UserAuthRoute } from './routes/UserAuth'
+import { WebhookStripe } from './routes/WebhookStripe'
 
 import { Server } from 'socket.io'
 import path from 'path'
@@ -21,6 +22,8 @@ app.get("/", (req, res, next) => {
 
 app.use('/auth', UserAuthRoute)
 app.use('/layers', LayersRoute)
+app.use('/webhook', WebhookStripe)
+
 
 app.get('/.well-known/pki-validation/38AD15B27BF6046063E982536DE98E23.txt', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "cert", "38AD15B27BF6046063E982536DE98E23.txt"))

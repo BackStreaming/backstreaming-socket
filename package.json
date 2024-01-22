@@ -16,6 +16,7 @@
     "jsonwebtoken": "^9.0.2",
     "prisma": "^5.5.2",
     "socket.io": "^4.7.2",
+    "stripe": "^14.13.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

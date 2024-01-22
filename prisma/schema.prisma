@@ -8,31 +8,39 @@ datasource db {
 }
 
 model user {
-  id         String     @id @default(auto()) @map("_id") @db.ObjectId
-  user_id    String     @unique
-  user_email String     @unique
-  token      String     @unique
-  created_at DateTime   @default(now())
-  updated_at DateTime   @default(now())
-  lotties    overlays[]
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  user_id         String            @unique
+  user_email      String            @unique
+  created_at      DateTime          @default(now())
+  updated_at      DateTime          @default(now())
+  lotties         overlays[]
+  lotties_galery  Json?
+  current_lottie  String?           @default("")
+  
 }
 
 model overlays {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  preview     String
-  image       String
-  price       String
-  hate        Float
-  description String
-  type        String
-  author      String
-  license     String @default("free")
-  actions     Int
-  text        Int
-  duration    Int
-  lottie      Json
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  stripe_id       String  @unique
+  stripe_price_id String  @unique
+  title           String
+  image           String
+  price           Int     @default(0)
+  hate            Float   @default(0)
+  description     String
+  type            String  @default("basic") // "Basic" | "Dinamic" | "Editable" | "Animation" | "Complex"
+  visibility      String  @default("public") // "Public" | "Private"
+  author          String
+  license         String  @default("free") // "Free" | "Paid"
+  tags            Json
+  lottie          Json
+  user            user?   @relation(fields: [userId], references: [id])
+  userId          String? @db.ObjectId
+}
 
-  user   user?   @relation(fields: [userId], references: [id])
-  userId String? @db.ObjectId
+model lottieInAccount {
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  stripe_id       String  @unique
+  stripe_price_id String  @unique
+  userId          String  @unique
 }
