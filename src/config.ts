@@ -4,9 +4,6 @@ import fs from 'fs'
 
 import cors from "cors"
 
-import { LayersRoute } from './routes/Layers'
-import { UserAuthRoute } from './routes/UserAuth'
-
 import { Server } from 'socket.io'
 import path from 'path'
 
@@ -24,9 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res, next) => {
   res.send("hello I am SSL Server !");
 });
-
-app.use('/auth', UserAuthRoute)
-app.use('/layers', LayersRoute)
 
 app.get('/.well-known/pki-validation/38AD15B27BF6046063E982536DE98E23.txt', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "cert", "38AD15B27BF6046063E982536DE98E23.txt"))
