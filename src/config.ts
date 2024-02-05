@@ -22,8 +22,8 @@ app.get("/", (req, res, next) => {
   res.send("hello I am SSL Server !");
 });
 
-app.get('/.well-known/pki-validation/38AD15B27BF6046063E982536DE98E23.txt', (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "cert", "38AD15B27BF6046063E982536DE98E23.txt"))
+app.get('/.well-known/pki-validation/006E27E2F9275C255F1587734F069BB5.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "cert", "006E27E2F9275C255F1587734F069BB5.txt"))
 })
 
 // Server HTTPS:
