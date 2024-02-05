@@ -1,5 +1,5 @@
 import express from 'express'
-import http from 'http'
+import https from 'https'
 import fs from 'fs'
 
 import cors from "cors"
@@ -27,9 +27,9 @@ app.get('/.well-known/pki-validation/006E27E2F9275C255F1587734F069BB5.txt', (req
 })
 
 // Server HTTPS:
-const serverHttp = http.createServer({
-  // cert: fs.readFileSync(path.join(__dirname, "..", "cert", "certificate.crt")),
-  // key: fs.readFileSync(path.join(__dirname, "..", "cert", "private.key"))
+const serverHttp = https.createServer({
+  cert: fs.readFileSync(path.join(__dirname, "..", "cert", "certificate.crt")),
+  key: fs.readFileSync(path.join(__dirname, "..", "cert", "private.key"))
 }, app);
 
 // Socket connection:
